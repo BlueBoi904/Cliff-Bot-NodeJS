@@ -14,7 +14,13 @@ client.on("ready", () => {
     });
     // General channel id: 216246550253273089
   });
+  // Write "Hello World " to general channel or send attachment
+  let generalChannel = client.channels.get("216246550253273089");
+  const attachment = new Discord.Attachment(
+    "https://ssl.quiksilver.com/static/QS/default/category-assets/marketing-landing/landing/build/img/surf/tiles/surf_featured_1.jpg"
+  );
+  generalChannel.send(attachment);
 });
 
-client.login("NjA2NDgzNTUwNDE3NDUzMDY2.XULxog.qRzZEQOhpmpY1yj8a94s1Fo2nGs");
+client.login("NjA2NDgzNTUwNDE3NDUzMDY2.XUL1hw.oCKYxuBkWFc-ybfvaOEfXOO2rgk");
 // Bot is now online
