@@ -1,5 +1,5 @@
 // Load discord module and connect
-const { loginInfo } = require("./loginInfo");
+const { loginInfo } = require("./ignoreFolder/loginInfo");
 const Discord = require("discord.js");
 const client = new Discord.Client();
 
