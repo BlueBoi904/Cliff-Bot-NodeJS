@@ -1,5 +1,6 @@
 // Load discord module and connect
 const { loginInfo } = require("./ignoreFolder/loginInfo");
+const { API } = require("./ignoreFolder/coinbaseApi");
 const Discord = require("discord.js");
 const client = new Discord.Client();
 
@@ -135,6 +136,22 @@ function fortuneCommand(args, recievedMessage) {
 function bitcoinCommand(args, recievedMessage) {
   //Tell the user the current price of bitcoin
   //Fetch bitcoin price api
+  var Client = require("coinbase").Client;
+
+  var client = new Client({
+    apiKey: API.API,
+    apiSecret: API.APISECRET,
+    version: "YYYY-MM-DD"
+  });
+
+  currencyCode = "USD"; // can also use EUR, CAD, etc.
+
+  // Make the request
+  client.getSpotPrice({ currency: currencyCode }, function(err, price) {
+    recievedMessage.channel.send(
+      "Current bitcoin price in " + currencyCode + ": $" + price.data.amount
+    );
+  });
   //Return in the proper format
 }
 
