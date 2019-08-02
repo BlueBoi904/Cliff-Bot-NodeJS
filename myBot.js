@@ -50,6 +50,8 @@ function processCommand(recievedMessage) {
     helpCommand(commandArgs, recievedMessage);
   } else if (primaryCommand == "multiply") {
     multiplyCommand(commandArgs, recievedMessage);
+  } else if (primaryCommand == "fortune") {
+    fortuneCommand(commandArgs, recievedMessage);
   } else {
     recievedMessage.channel.send("Unknow command. Try `!help` or `!multiply`");
   }
@@ -79,10 +81,53 @@ function helpCommand(args, recievedMessage) {
   }
 }
 //Command ideas
-//Fortune cookie command
 
+//Fortune cookie command
+function fortuneCommand(args, recievedMessage) {
+  let fortunes = [
+    "The fortune you seek is in another cookie.",
+    "A foolish man listens to his heart. A wise man listens to cookies.",
+    "An alien of some sort will be appearing to you shortly.",
+    "Do not mistake temptation for opportunity.",
+    "He who laughs at himself never runs out of things to laugh at.",
+    "Some men dream of fortunes, others dream of cookies.",
+    "The greatest danger could be your stupidity.",
+    "You will be hungry again in one hour.",
+    "Because of your melodic nature, the moonlight never misses an appointment.",
+    "Help! I am being held prisoner in a fortune cookie factory.",
+    "It's about time I got out of that cookie.",
+    "Only listen to the fortune cookie; disregard all other fortune telling units.",
+    "It is a good day to have a good day.",
+    "All fortunes are wrong except this one.",
+    "Someone will invite you to a Karaoke party.",
+    "That wasn't chicken.",
+    "There is no mistake so great as that of being always right.",
+    "No snowflake feels responsible in an avalanche.",
+    "This cookie contains 117 calories.",
+    "You think it's a secret, but they know.",
+    "Change is inevitable, except for vending machines.",
+    "Don't let statistics do a number on you.",
+    "Never forget a friend. Especially if he owes you.",
+    "Never wear your best pants when you go to fight for freedom.",
+    "You love Chinese food.",
+    "I am worth a fortune."
+  ];
+
+  let randomFortune = fortunes[Math.floor(Math.random() * fortunes.length)];
+
+  recievedMessage.channel.send(randomFortune);
+}
 //Bitcoin price
 
 //Weather takes zipcode, returns local weather
 client.login(loginInfo);
 // Bot is now online
+
+/*
+Server list:
+ - general text 216246550253273089
+ - General voice 216246550253273090
+ - FUCK BRO voice 232257632935608321
+ - Overwatch voice 286339889455431681
+ - bot_commands text 581132581664194560
+*/
