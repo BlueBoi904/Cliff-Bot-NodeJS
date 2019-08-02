@@ -52,6 +52,10 @@ function processCommand(recievedMessage) {
     multiplyCommand(commandArgs, recievedMessage);
   } else if (primaryCommand == "fortune") {
     fortuneCommand(commandArgs, recievedMessage);
+  } else if (primaryCommand == "bitcoin") {
+    bitcoinCommand(commandArgs, recievedMessage);
+  } else if (primaryCommand == "weather") {
+    bitcoinCommand(commandArgs, recievedMessage);
   } else {
     recievedMessage.channel.send("Unknow command. Try `!help` or `!multiply`");
   }
@@ -110,7 +114,16 @@ function fortuneCommand(args, recievedMessage) {
     "Never forget a friend. Especially if he owes you.",
     "Never wear your best pants when you go to fight for freedom.",
     "You love Chinese food.",
-    "I am worth a fortune."
+    "I am worth a fortune.",
+    "A good way to keep healthy is to eat more Chinese food.",
+    "Change can hurt, but it leads a path to something better.",
+    "Hidden in a valley beside an open stream- This will be the type of place where you will find your dream.",
+    "You learn from your mistakes... You will learn a lot today.",
+    "A fanatic is one who can't change his mind, and won't change the subject.",
+    "If you look back, you'll soon be going that way.",
+    "You will live long enough to open many fortune cookies.",
+    "Flattery will go far tonight.",
+    "We don't know the future, but here's a cookie."
   ];
 
   let randomFortune = fortunes[Math.floor(Math.random() * fortunes.length)];
@@ -118,8 +131,18 @@ function fortuneCommand(args, recievedMessage) {
   recievedMessage.channel.send(randomFortune);
 }
 //Bitcoin price
+// API KEY
+function bitcoinCommand(args, recievedMessage) {
+  //Tell the user the current price of bitcoin
+  //Fetch bitcoin price api
+  //Return in the proper format
+}
 
 //Weather takes zipcode, returns local weather
+function weatherCommand(args, recievedMessage) {
+  //
+}
+
 client.login(loginInfo);
 // Bot is now online
 

@@ -1,0 +1,23 @@
+{
+  "name": "discord-bot",
+  "version": "1.0.0",
+  "description": "My first discord bot",
+  "main": "myBot.js",
+  "dependencies": {
+    "coinbase": "^2.0.8"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BlueBoi904/Discord-Bot-NodeJS.git"
+  },
+  "author": "Cliff Mirschel",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/BlueBoi904/Discord-Bot-NodeJS/issues"
+  },
+  "homepage": "https://github.com/BlueBoi904/Discord-Bot-NodeJS#readme"
+}
