@@ -144,7 +144,16 @@ function bitcoinCommand(args, recievedMessage) {
     version: "YYYY-MM-DD"
   });
 
-  currencyCode = "USD"; // can also use EUR, CAD, etc.
+  let currencyCode; // can also use EUR, CAD, etc.
+  if (args[0] === "EUR") {
+    currencyCode = "EUR";
+  } else if (args[0] === "JPY") {
+    currencyCode = "JPY";
+  } else if (args[0] === "CAD") {
+    currencyCode = "CAD";
+  } else {
+    currencyCode = "USD";
+  }
 
   // Make the request
   client.getSpotPrice({ currency: currencyCode }, function(err, price) {
