@@ -4,7 +4,8 @@
   "description": "My first discord bot",
   "main": "myBot.js",
   "dependencies": {
-    "coinbase": "^2.0.8"
+    "coinbase": "^2.0.8",
+    "stock-data.js": "^1.2.2"
   },
   "devDependencies": {},
   "scripts": {

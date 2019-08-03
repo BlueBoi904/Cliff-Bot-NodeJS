@@ -56,8 +56,10 @@ function processCommand(recievedMessage) {
     fortuneCommand(commandArgs, recievedMessage);
   } else if (primaryCommand == "bitcoin") {
     bitcoinCommand(commandArgs, recievedMessage);
-  } else if (primaryCommand == "weather") {
-    bitcoinCommand(commandArgs, recievedMessage);
+  } else if (primaryCommand == "stock") {
+    stockPriceCommand(commandArgs, recievedMessage);
+  } else if (primaryCommand == "commands") {
+    commandList(commandArgs, recievedMessage);
   } else {
     recievedMessage.channel.send("Unknow command. Try `!help` or `!multiply`");
   }
@@ -127,9 +129,14 @@ function bitcoinCommand(args, recievedMessage) {
   //Return in the proper format
 }
 
-//Weather takes zipcode, returns local weather
-function weatherCommand(args, recievedMessage) {
-  //
+//User does stock command followed by ticker
+function stockPriceCommand(args, recievedMessage) {
+  //Check if user sends a ticker
+  // If not, send top 3 stocks current prices
+}
+
+function commandList(args, recievedMessage) {
+  // Display full command list for user to expore
 }
 
 client.login(loginInfo);
