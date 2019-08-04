@@ -142,13 +142,15 @@ function stocksPriceCommand(recievedMessage) {
     })
     .then(res => {
       recievedMessage.channel.send(
-        `Here are some of the current stock market prices: ${
+        `Here are some of the top stocks right now: \n ${
           res.data[0].symbol
-        } ${res.data[0].price} ${res.data[1].symbol} ${res.data[1].price} ${
-          res.data[2].symbol
-        } ${res.data[2].price} ${res.data[3].symbol} ${res.data[3].price}  ${
-          res.data[4].symbol
-        } ${res.data[4].price} `
+        } - $${res.data[0].price} \n ${res.data[1].symbol} - $${
+          res.data[1].price
+        } \n ${res.data[2].symbol} - $${res.data[2].price} \n ${
+          res.data[3].symbol
+        } - $${res.data[3].price} \n ${res.data[4].symbol} - $${
+          res.data[4].price
+        } `
       );
     })
     .catch(err => {
