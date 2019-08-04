@@ -1,6 +1,8 @@
 // Load discord module and connect
 const { loginInfo } = require("./ignoreFolder/loginInfo");
 const { API } = require("./ignoreFolder/coinbaseApi");
+const { StockAPI } = require("./ignoreFolder/marketDataApi");
+const stockdata = require("stock-data.js");
 const { fortunes } = require("./util/data");
 const Discord = require("discord.js");
 const client = new Discord.Client();
@@ -56,6 +58,8 @@ function processCommand(recievedMessage) {
     fortuneCommand(commandArgs, recievedMessage);
   } else if (primaryCommand == "bitcoin") {
     bitcoinCommand(commandArgs, recievedMessage);
+  } else if (primaryCommand == "stocks") {
+    stocksPriceCommand(recievedMessage);
   } else if (primaryCommand == "stock") {
     stockPriceCommand(commandArgs, recievedMessage);
   } else if (primaryCommand == "commands") {
@@ -130,9 +134,31 @@ function bitcoinCommand(args, recievedMessage) {
 }
 
 //User does stock command followed by ticker
+function stocksPriceCommand(recievedMessage) {
+  stockdata
+    .realtime({
+      symbols: ["AAPL", "MSFT", "TSLA", "AMZN", "GOOGL"],
+      API_TOKEN: StockAPI
+    })
+    .then(res => {
+      recievedMessage.channel.send(
+        `Here are some of the current stock market prices: ${
+          res.data[0].symbol
+        } ${res.data[0].price} ${res.data[1].symbol} ${res.data[1].price} ${
+          res.data[2].symbol
+        } ${res.data[2].price} ${res.data[3].symbol} ${res.data[3].price}  ${
+          res.data[4].symbol
+        } ${res.data[4].price} `
+      );
+    })
+    .catch(err => {
+      recievedMessage.channel.send(
+        "There was an error processing your data. Please check the stock symbol was corrent and try again."
+      );
+    });
+}
 function stockPriceCommand(args, recievedMessage) {
   //Check if user sends a ticker
-  // If not, send top 3 stocks current prices
 }
 
 function commandList(args, recievedMessage) {
