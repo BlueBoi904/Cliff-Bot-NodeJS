@@ -70,7 +70,10 @@ function processCommand(recievedMessage) {
       stockPriceCommand(commandArgs, recievedMessage);
       break;
     case "commands":
-      commandList(commandArgs, recievedMessage);
+      commandList(recievedMessage);
+      break;
+    case "ping":
+      pongCommand(recievedMessage);
       break;
     default:
       recievedMessage.channel.send(
@@ -217,6 +220,10 @@ function stockPriceCommand(args, recievedMessage) {
 
 function commandList(args, recievedMessage) {
   // Display full command list for user to expore
+}
+
+function pongCommand(recievedMessage) {
+  recievedMessage.channel.send("Pong");
 }
 
 client.login(loginInfo);
