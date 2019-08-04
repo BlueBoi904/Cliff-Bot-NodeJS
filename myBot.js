@@ -142,15 +142,13 @@ function stocksPriceCommand(recievedMessage) {
     })
     .then(res => {
       recievedMessage.channel.send(
-        `Here are some of the top stocks right now: \n ${
-          res.data[0].symbol
-        } - $${res.data[0].price} \n ${res.data[1].symbol} - $${
-          res.data[1].price
-        } \n ${res.data[2].symbol} - $${res.data[2].price} \n ${
-          res.data[3].symbol
-        } - $${res.data[3].price} \n ${res.data[4].symbol} - $${
-          res.data[4].price
-        } `
+        `Here are some of the top stocks right now:\n${res.data[0].symbol} - $${
+          res.data[0].price
+        }\n${res.data[1].symbol} - $${res.data[1].price}\n${
+          res.data[2].symbol
+        } - $${res.data[2].price}\n${res.data[3].symbol} - $${
+          res.data[3].price
+        }\n${res.data[4].symbol} - $${res.data[4].price} `
       );
     })
     .catch(err => {
@@ -161,6 +159,30 @@ function stocksPriceCommand(recievedMessage) {
 }
 function stockPriceCommand(args, recievedMessage) {
   //Check if user sends a ticker
+  let symbol = args[0];
+  if (symbol) {
+    stockdata
+      .realtime({
+        symbols: symbol,
+        API_TOKEN: StockAPI
+      })
+      .then(res => {
+        recievedMessage.channel.send(
+          `Name: ${res.data[0].name}\nTicker: ${
+            res.data[0].symbol
+          }\nCurrent Price: $${res.data[0].price}`
+        );
+      })
+      .catch(err => {
+        recievedMessage.channel.send(
+          "There was an error processing your data.\nPlease check you entered the stock symbol correctly and try again."
+        );
+      });
+  } else {
+    recievedMessage.channel.send(
+      'Make sure you enter the stock symbol after the "!stock" command.\nExample: "!stock AMD".\nPlease check the formatting was corrent and try again.'
+    );
+  }
 }
 
 function commandList(args, recievedMessage) {
