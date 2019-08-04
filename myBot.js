@@ -50,23 +50,53 @@ function processCommand(recievedMessage) {
   let primaryCommand = splitCommand[0];
   let commandArgs = splitCommand.slice(1);
 
-  if (primaryCommand == "help") {
-    helpCommand(commandArgs, recievedMessage);
-  } else if (primaryCommand == "multiply") {
-    multiplyCommand(commandArgs, recievedMessage);
-  } else if (primaryCommand == "fortune") {
-    fortuneCommand(commandArgs, recievedMessage);
-  } else if (primaryCommand == "bitcoin") {
-    bitcoinCommand(commandArgs, recievedMessage);
-  } else if (primaryCommand == "stocks") {
-    stocksPriceCommand(recievedMessage);
-  } else if (primaryCommand == "stock") {
-    stockPriceCommand(commandArgs, recievedMessage);
-  } else if (primaryCommand == "commands") {
-    commandList(commandArgs, recievedMessage);
-  } else {
-    recievedMessage.channel.send("Unknow command. Try `!help` or `!multiply`");
+  switch (primaryCommand) {
+    case "help":
+      helpCommand(commandArgs, recievedMessage);
+      break;
+    case "multiply":
+      multiplyCommand(commandArgs, recievedMessage);
+      break;
+    case "fortune":
+      fortuneCommand(commandArgs, recievedMessage);
+      break;
+    case "bitcoin":
+      bitcoinCommand(commandArgs, recievedMessage);
+      break;
+    case "stocks":
+      stocksPriceCommand(recievedMessage);
+      break;
+    case "stock":
+      stockPriceCommand(commandArgs, recievedMessage);
+      break;
+    case "commands":
+      commandList(commandArgs, recievedMessage);
+      break;
+    default:
+      recievedMessage.channel.send(
+        "Unknow command. Try `!commands` for a list of commands"
+      );
   }
+
+  // if (primaryCommand == "help") {
+  //   helpCommand(commandArgs, recievedMessage);
+  // } else if (primaryCommand == "multiply") {
+  //   multiplyCommand(commandArgs, recievedMessage);
+  // } else if (primaryCommand == "fortune") {
+  //   fortuneCommand(commandArgs, recievedMessage);
+  // } else if (primaryCommand == "bitcoin") {
+  //   bitcoinCommand(commandArgs, recievedMessage);
+  // } else if (primaryCommand == "stocks") {
+  //   stocksPriceCommand(recievedMessage);
+  // } else if (primaryCommand == "stock") {
+  //   stockPriceCommand(commandArgs, recievedMessage);
+  // } else if (primaryCommand == "commands") {
+  //   commandList(commandArgs, recievedMessage);
+  // } else {
+  //   recievedMessage.channel.send(
+  //     "Unknow command. Try `!commands` for a list of commands"
+  //   );
+  // }
 }
 
 function multiplyCommand(args, recievedMessage) {
