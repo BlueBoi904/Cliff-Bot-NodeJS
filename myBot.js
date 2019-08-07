@@ -121,11 +121,11 @@ function helpCommand(args, recievedMessage) {
     recievedMessage.channel.send(
       "I'm not sure what you need help with. Try `!help [topic]`"
     );
-  } else if (args[0] === "stock") {
+  } else if (args[0] === "stock" || args[0] === "stocks") {
     recievedMessage.channel.send(
       `It looks like you need help with ${
         args[0]
-      }.\nsimply type !stock follwed by the stock symbol you want more information about. '!stock AMD'`
+      }.\nSimply type '!stock' follwed by the stock symbol you want more information about.\nEx '!stock AMD'`
     );
   }
 }
