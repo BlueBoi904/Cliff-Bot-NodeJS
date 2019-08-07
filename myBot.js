@@ -121,14 +121,18 @@ function helpCommand(args, recievedMessage) {
     recievedMessage.channel.send(
       "I'm not sure what you need help with. Try `!help [topic]`"
     );
-  } else {
-    recievedMessage.channel.send("It looks like you need help with " + args);
+  } else if (args[0] === "stock") {
+    recievedMessage.channel.send(
+      `It looks like you need help with ${
+        args[0]
+      }.\nsimply type !stock follwed by the stock symbol you want more information about. '!stock AMD'`
+    );
   }
 }
 //Command ideas
 
 //Fortune cookie command
-function fortuneCommand(args, recievedMessage) {
+function fortuneCommand(recievedMessage) {
   let randomFortune = fortunes[Math.floor(Math.random() * fortunes.length)];
 
   recievedMessage.channel.send(randomFortune);
@@ -218,8 +222,23 @@ function stockPriceCommand(args, recievedMessage) {
   }
 }
 
-function commandList(args, recievedMessage) {
+function commandList(recievedMessage) {
   // Display full command list for user to expore
+  let commandList = "Here is a list of commands you can try:";
+  const commands = [
+    "!help",
+    "!multiply",
+    "!bitcoin",
+    "!fortune",
+    "!stock",
+    "!stocks",
+    "!ping"
+  ];
+  for (let i = 0; i < commands.length; i++) {
+    commandList += `\n${commands[i]}`;
+  }
+
+  recievedMessage.channel.send(commandList);
 }
 
 function pongCommand(recievedMessage) {
