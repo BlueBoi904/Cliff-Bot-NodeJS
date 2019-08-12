@@ -9,6 +9,17 @@ Custom Discord bot that can interact with the user by displaying current stock o
 - Discord API
 - WorldTradingData API
 
+# Command List
+
+- !help
+- !multiply
+- !commands
+- !bitcoin
+- !fortune
+- !stock
+- !stocks
+- !ping
+
 # What I've Learned
 
 - Handling Promises with Asynchronous JavaScript
