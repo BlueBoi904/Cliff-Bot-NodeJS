@@ -58,7 +58,7 @@ function processCommand(recievedMessage) {
       multiplyCommand(commandArgs, recievedMessage);
       break;
     case "fortune":
-      fortuneCommand(commandArgs, recievedMessage);
+      fortuneCommand(recievedMessage);
       break;
     case "bitcoin":
       bitcoinCommand(commandArgs, recievedMessage);
