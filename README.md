@@ -2,6 +2,10 @@
 
 Custom Discord bot that can interact with the user by displaying current stock or crypto data, generating random fortune cookies, and many other interesting functionalities.
 
+# Image
+
+<img src='Images/bot_test.png' heigth='500'>
+
 # Technologies Used
 
 - NodeJS
@@ -24,7 +28,3 @@ Custom Discord bot that can interact with the user by displaying current stock o
 
 - Handling Promises with Asynchronous, Non-Blocking JavaScript
 - Using NodeJS to interact with user through Discord API
-
-# Image
-
-<img src='Images/bot_test.png' heigth='500'>
