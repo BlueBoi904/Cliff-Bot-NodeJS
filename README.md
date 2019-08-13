@@ -24,3 +24,7 @@ Custom Discord bot that can interact with the user by displaying current stock o
 
 - Handling Promises with Asynchronous, Non-Blocking JavaScript
 - Using NodeJS to interact with user through Discord API
+
+# Image
+
+<img src='Images/bot_test.png' heigth='500'>
