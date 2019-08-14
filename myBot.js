@@ -256,21 +256,25 @@ function pongCommand(recievedMessage) {
 
 async function translateCommand(args, recievedMessage) {
   //Check if the user imput correct arguments
-  if (args) {
-    // The text to translate
-    const text = "Hello, world!";
-
+  // The text to translate
+  if (!args) {
+    recievedMessage.channel.send(
+      `Please type the language you would like to translate to followed by the text. \n\n Example: '!translate korean hello world`
+    );
     // The target language
-    const target = "ru";
+  } else {
+    console.log(args);
+    const target = args[0];
+    const textArr = args.slice(1);
+    console.log(args);
+    const text = textArr.join(" ");
+    for (let i = 0; i < args.length; i++) {}
 
-    // Translates some text into Russian
     const [translation] = await translate.translate(text, target);
     recievedMessage.channel.send(`Translation: ${translation}`);
-  } else {
-    recievedMessage.channel.send(
-      "Oops, looks like you didn't specify a language to translate to. \n For example, try !translate `language` `Message to translate`"
-    );
   }
+
+  // Translates some text into target language
 
   //If not, ask them to enter correctly showing them an example
 }
