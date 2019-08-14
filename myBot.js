@@ -139,6 +139,14 @@ function helpCommand(args, recievedMessage) {
         args[0]
       }.\n\nSimply type '!stock' follwed by the stock symbol you want more information about.\n\nEx '!stock AMD'`
     );
+  } else if (
+    args[0] === "translate" ||
+    args[0] === "translation" ||
+    args[0] === "languages"
+  ) {
+    recievedMessage.channel.send(
+      ` It looks like you need help with the !translate command.\n\nPlease type the language code of the language you would like to translate to, followed by the text.\n\nExample: '!translate ko hello world => Translation: 안녕하세요 월드\n\nFor a list of language codes supported, visit: https://cloud.google.com/translate/docs/languages`
+    );
   }
 }
 //Command ideas
