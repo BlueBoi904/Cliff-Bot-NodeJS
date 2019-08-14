@@ -84,6 +84,9 @@ function processCommand(recievedMessage) {
     case "translate":
       translateCommand(commandArgs, recievedMessage);
       break;
+    case "languages":
+      languagesCommand(recievedMessage);
+      break;
     default:
       recievedMessage.channel.send(
         "Unknow command. Try `!commands` for a list of commands"
@@ -134,7 +137,7 @@ function helpCommand(args, recievedMessage) {
     recievedMessage.channel.send(
       `It looks like you need help with ${
         args[0]
-      }.\nSimply type '!stock' follwed by the stock symbol you want more information about.\nEx '!stock AMD'`
+      }.\n\nSimply type '!stock' follwed by the stock symbol you want more information about.\n\nEx '!stock AMD'`
     );
   }
 }
@@ -221,12 +224,12 @@ function stockPriceCommand(args, recievedMessage) {
       })
       .catch(err => {
         recievedMessage.channel.send(
-          "There was an error processing your data.\nPlease check you entered the stock symbol correctly and try again."
+          "There was an error processing your data.\n\nPlease check you entered the stock symbol correctly and try again."
         );
       });
   } else {
     recievedMessage.channel.send(
-      'Make sure you enter the stock symbol after the "!stock" command.\nExample: "!stock AMD".\nPlease check the formatting was corrent and try again.'
+      'Make sure you enter the stock symbol after the "!stock" command.\n\nExample: "!stock AMD".\n\nPlease check the formatting was corrent and try again.'
     );
   }
 }
@@ -257,16 +260,14 @@ function pongCommand(recievedMessage) {
 async function translateCommand(args, recievedMessage) {
   //Check if the user imput correct arguments
   // The text to translate
-  if (!args) {
+  if (args.length === 0) {
     recievedMessage.channel.send(
-      `Please type the language you would like to translate to followed by the text. \n\n Example: '!translate korean hello world`
+      `Please type the language code of the language you would like to translate to, followed by the text.\n\nExample: '!translate ko hello world => Translation: 안녕하세요 월드\n\nFor a list of language codes supported, visit: https://cloud.google.com/translate/docs/languages`
     );
     // The target language
   } else {
-    console.log(args);
-    const target = args[0];
+    const target = args[0].toLowerCase();
     const textArr = args.slice(1);
-    console.log(args);
     const text = textArr.join(" ");
     for (let i = 0; i < args.length; i++) {}
 
@@ -277,6 +278,12 @@ async function translateCommand(args, recievedMessage) {
   // Translates some text into target language
 
   //If not, ask them to enter correctly showing them an example
+}
+
+function languagesCommand(recievedMessage) {
+  recievedMessage.channel.send(
+    "https://cloud.google.com/translate/docs/languages"
+  );
 }
 
 client.login(loginInfo);
