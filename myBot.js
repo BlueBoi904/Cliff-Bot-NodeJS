@@ -75,6 +75,9 @@ function processCommand(recievedMessage) {
     case "ping":
       pongCommand(recievedMessage);
       break;
+    case "translate":
+      translateCommand(commandArgs, recievedMessage);
+      break;
     default:
       recievedMessage.channel.send(
         "Unknow command. Try `!commands` for a list of commands"
@@ -243,6 +246,19 @@ function commandList(recievedMessage) {
 
 function pongCommand(recievedMessage) {
   recievedMessage.channel.send("Pong");
+}
+
+function translateCommand(args, recievedMessage) {
+  //Check if the user imput correct arguments
+  if (args) {
+    recievedMessage.channel.send("Yo");
+  } else {
+    recievedMessage.channel.send(
+      "Oops, looks like you didn't specify a language to translate to. \n For example, try !translate `language` `Message to translate`"
+    );
+  }
+
+  //If not, ask them to enter correctly showing them an example
 }
 
 client.login(loginInfo);
