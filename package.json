@@ -4,7 +4,9 @@
   "description": "My first discord bot",
   "main": "myBot.js",
   "dependencies": {
+    "@google-cloud/translate": "^4.1.3",
     "coinbase": "^2.0.8",
+    "dotenv": "^8.0.0",
     "stock-data.js": "^1.2.2"
   },
   "devDependencies": {},

@@ -6,6 +6,12 @@ const stockdata = require("stock-data.js");
 const { fortunes } = require("./util/data");
 const Discord = require("discord.js");
 const client = new Discord.Client();
+const { Translate } = require("@google-cloud/translate");
+require("dotenv").config();
+
+//Initilize cloud translate API
+const projectId = "discord-bot-1565788851899";
+const translate = new Translate({ projectId });
 
 client.on("ready", () => {
   console.log("Connected as " + client.user.tag);
@@ -248,10 +254,18 @@ function pongCommand(recievedMessage) {
   recievedMessage.channel.send("Pong");
 }
 
-function translateCommand(args, recievedMessage) {
+async function translateCommand(args, recievedMessage) {
   //Check if the user imput correct arguments
   if (args) {
-    recievedMessage.channel.send("Yo");
+    // The text to translate
+    const text = "Hello, world!";
+
+    // The target language
+    const target = "ru";
+
+    // Translates some text into Russian
+    const [translation] = await translate.translate(text, target);
+    recievedMessage.channel.send(`Translation: ${translation}`);
   } else {
     recievedMessage.channel.send(
       "Oops, looks like you didn't specify a language to translate to. \n For example, try !translate `language` `Message to translate`"
