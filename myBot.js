@@ -244,7 +244,8 @@ function commandList(recievedMessage) {
     "!fortune",
     "!stock",
     "!stocks",
-    "!ping"
+    "!ping",
+    "!translate"
   ];
   for (let i = 0; i < commands.length; i++) {
     commandList += `\n${commands[i]}`;
@@ -271,7 +272,13 @@ async function translateCommand(args, recievedMessage) {
     const text = textArr.join(" ");
     for (let i = 0; i < args.length; i++) {}
 
-    const [translation] = await translate.translate(text, target);
+    const [translation] = await translate
+      .translate(text, target)
+      .catch(err =>
+        recievedMessage.channel.send(
+          'Uh oh, looks like there was an error with your input format.\n\nMake sure you properly formatted your input like so\n\nExample: "!translate ko hello world" => Translation: 안녕하세요 월드\n\nFor a list of language codes supported, visit: https://cloud.google.com/translate/docs/languages'
+        )
+      );
     recievedMessage.channel.send(`Translation: ${translation}`);
   }
 
