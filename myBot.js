@@ -142,7 +142,7 @@ function helpCommand(args, recievedMessage) {
   } else if (
     args[0] === "translate" ||
     args[0] === "translation" ||
-    args[0] === "languages"
+    args[0] === "language"
   ) {
     recievedMessage.channel.send(
       ` It looks like you need help with the !translate command.\n\nPlease type the language code of the language you would like to translate to, followed by the text.\n\nExample: '!translate ko hello world => Translation: 안녕하세요 월드\n\nFor a list of language codes supported, visit: https://cloud.google.com/translate/docs/languages`
@@ -278,7 +278,6 @@ async function translateCommand(args, recievedMessage) {
     const target = args[0].toLowerCase();
     const textArr = args.slice(1);
     const text = textArr.join(" ");
-    for (let i = 0; i < args.length; i++) {}
 
     const [translation] = await translate
       .translate(text, target)
