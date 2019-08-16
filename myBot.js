@@ -7,6 +7,7 @@ const { fortunes } = require("./util/data");
 const Discord = require("discord.js");
 const client = new Discord.Client();
 const { Translate } = require("@google-cloud/translate");
+const fetch = require("node-fetch");
 require("dotenv").config();
 
 //Initilize cloud translate API
@@ -86,6 +87,9 @@ function processCommand(recievedMessage) {
       break;
     case "languages":
       languagesCommand(recievedMessage);
+      break;
+    case "dogs":
+      dogsCommand(recievedMessage);
       break;
     default:
       recievedMessage.channel.send(
@@ -298,6 +302,20 @@ function languagesCommand(recievedMessage) {
   recievedMessage.channel.send(
     "https://cloud.google.com/translate/docs/languages"
   );
+}
+function dogsCommand(recievedMessage) {
+  fetch("https://dog.ceo/api/breeds/image/random")
+    .then(function(response) {
+      return response.json();
+    })
+    .then(data => {
+      const webAttachment = new Discord.Attachment(data.message);
+      recievedMessage.channel.send(webAttachment);
+    })
+    .catch(err => {
+      console.log(err);
+      recievedMessage.channel.send("Oops, something went wrong...");
+    });
 }
 
 client.login(loginInfo);
