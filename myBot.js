@@ -89,7 +89,7 @@ function processCommand(recievedMessage) {
       languagesCommand(recievedMessage);
       break;
     case "dogs":
-      dogsCommand(recievedMessage);
+      dogsCommand(commandArgs, recievedMessage);
       break;
     default:
       recievedMessage.channel.send(
@@ -149,7 +149,11 @@ function helpCommand(args, recievedMessage) {
     args[0] === "language"
   ) {
     recievedMessage.channel.send(
-      ` It looks like you need help with the !translate command.\n\nPlease type the language code of the language you would like to translate to, followed by the text.\n\nExample: '!translate ko hello world => Translation: 안녕하세요 월드\n\nFor a list of language codes supported, visit: https://cloud.google.com/translate/docs/languages`
+      ` It looks like you need help with the !translate command.\n\nPlease type the language code of the language you would like to translate to, followed by the text.\n\nExample: '!translate ko hello world' => Translation: 안녕하세요 월드\n\nFor a list of language codes supported, visit: https://cloud.google.com/translate/docs/languages`
+    );
+  } else if (args[0] === "dogs" || args[0] === "dog") {
+    recievedMessage.channel.send(
+      ` It looks like you need help with the !dogs command.\n\nPlease type the '!dogs' command followed by the breed of dog you like most!\n\nExample: '!dogs boxer'`
     );
   }
 }
@@ -257,7 +261,9 @@ function commandList(recievedMessage) {
     "!stock",
     "!stocks",
     "!ping",
-    "!translate"
+    "!translate",
+    "!languages",
+    "!dogs"
   ];
   for (let i = 0; i < commands.length; i++) {
     commandList += `\n${commands[i]}`;
@@ -303,19 +309,37 @@ function languagesCommand(recievedMessage) {
     "https://cloud.google.com/translate/docs/languages"
   );
 }
-function dogsCommand(recievedMessage) {
-  fetch("https://dog.ceo/api/breeds/image/random")
-    .then(function(response) {
-      return response.json();
-    })
-    .then(data => {
-      const webAttachment = new Discord.Attachment(data.message);
-      recievedMessage.channel.send(webAttachment);
-    })
-    .catch(err => {
-      console.log(err);
-      recievedMessage.channel.send("Oops, something went wrong...");
-    });
+function dogsCommand(args, recievedMessage) {
+  if (args.length === 0) {
+    fetch("https://dog.ceo/api/breeds/image/random")
+      .then(res => {
+        return res.json();
+      })
+      .then(data => {
+        const webAttachment = new Discord.Attachment(data.message);
+        recievedMessage.channel.send(webAttachment);
+      })
+      .catch(err => {
+        recievedMessage.channel.send("Oops, something went wrong...");
+      });
+  } else if (args[0]) {
+    const breed = args[0];
+    // for (let i = 0; i < args.length; i++) {
+    //   breed += args[i];
+    // }
+    // breed = breed.replace(/\s/g, "").trim();
+    fetch(`https://dog.ceo/api/breed/${breed}/images/random`)
+      .then(res => res.json())
+      .then(data => {
+        const webAttachment = new Discord.Attachment(data.message);
+        recievedMessage.channel.send(webAttachment);
+      })
+      .catch(err => {
+        recievedMessage.channel.send(
+          "Oops, something went wrong... Please make sure you entered the breed name correctly\n\nExample '!dogs boxer'\n\n Sub breeds are not supported... i.e golden retriever"
+        );
+      });
+  }
 }
 
 client.login(loginInfo);

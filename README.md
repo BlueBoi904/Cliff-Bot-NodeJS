@@ -1,6 +1,6 @@
 # Cliff-Bot-Discord
 
-Custom Discord bot that can interact with the user by displaying current stock or crypto data, generating random fortune cookies, and many other interesting functionalities.
+Custom Discord bot that can interact with the server by displaying current stock or crypto data, translating any language, generating random dog images, and many other interesting functionalities.
 
 # Image
 
@@ -9,6 +9,8 @@ Custom Discord bot that can interact with the user by displaying current stock o
 # Technologies Used
 
 - NodeJS
+- ExpressJS
+- Google Cloud APIs
 - Coinbase API
 - Discord API
 - WorldTradingData API
@@ -23,8 +25,11 @@ Custom Discord bot that can interact with the user by displaying current stock o
 - !stock
 - !stocks
 - !ping
+- !translate
+- !dogs
 
 # What I've Learned
 
 - Handling Promises with Asynchronous, Non-Blocking JavaScript
 - Using NodeJS to interact with user through Discord API
+- How to properly work with enviroment variables in NodeJS
