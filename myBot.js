@@ -98,6 +98,9 @@ function processCommand(recievedMessage) {
     case "animalfact":
       animalFactCommand(recievedMessage);
       break;
+    case "panda":
+      pandaCommand(recievedMessage);
+      break;
     default:
       recievedMessage.channel.send(
         "Unknow command. Try `!commands` for a list of commands"
@@ -270,7 +273,8 @@ function commandList(recievedMessage) {
     "!ping",
     "!translate",
     "!languages",
-    "!dogs"
+    "!dogs",
+    "!animalfact"
   ];
   for (let i = 0; i < commands.length; i++) {
     commandList += `\n${commands[i]}`;
@@ -376,6 +380,26 @@ function animalFactCommand(recievedMessage) {
     })
     .catch(err => {
       recievedMessage.channel.send("Oops, something went wrong...");
+    });
+}
+
+function pandaCommand(recievedMessage) {
+  const pandaEndpoints = [
+    "https://some-random-api.ml/img/red_panda",
+    "https://some-random-api.ml/img/panda"
+  ];
+  const randomPandaEndpoint =
+    pandaEndpoints[Math.floor(Math.random() * pandaEndpoints.length)];
+  fetch(randomPandaEndpoint)
+    .then(res => {
+      return res.json();
+    })
+    .then(data => {
+      const webAttachment = new Discord.Attachment(data.link);
+      recievedMessage.channel.send(webAttachment);
+    })
+    .catch(err => {
+      recievedMessage.channel.send("Oops, looks like something went wrong");
     });
 }
 
