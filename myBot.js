@@ -9,6 +9,7 @@ const Discord = require("discord.js");
 const client = new Discord.Client();
 const { Translate } = require("@google-cloud/translate");
 const fetch = require("node-fetch");
+const axios = require("axios");
 require("dotenv").config();
 
 //Initilize cloud translate API
@@ -32,20 +33,21 @@ client.on("ready", () => {
   //   const attachment = new Discord.Attachment(
   //     "https://ssl.quiksilver.com/static/QS/default/category-assets/marketing-landing/landing/build/img/surf/tiles/surf_featured_1.jpg"
   //   );
-  //   generalChannel.send("Sup guys, i'm a bot!");
+  const botCommandChannel = client.channels.get("581132581664194560");
+  botCommandChannel.send("Sup guys, i'm ready!");
 });
 
 client.on("message", recievedMessage => {
   if (recievedMessage.author == client.user) {
     return;
   }
-  //   recievedMessage.channel.send(
-  //     "Message recieved, : " +
-  //       recievedMessage.author.toString() +
-  //       ": " +
-  //       recievedMessage.content
-  //   );
-  //   recievedMessage.react("552556099077931018");
+  // recievedMessage.channel.send(
+  //   "Message recieved, : " +
+  //     recievedMessage.author.toString() +
+  //     ": " +
+  //     recievedMessage.content
+  // );
+  // recievedMessage.react("552556099077931018");
 
   if (recievedMessage.content.startsWith("!")) {
     processCommand(recievedMessage);
@@ -106,26 +108,6 @@ function processCommand(recievedMessage) {
         "Unknow command. Try `!commands` for a list of commands"
       );
   }
-
-  // if (primaryCommand == "help") {
-  //   helpCommand(commandArgs, recievedMessage);
-  // } else if (primaryCommand == "multiply") {
-  //   multiplyCommand(commandArgs, recievedMessage);
-  // } else if (primaryCommand == "fortune") {
-  //   fortuneCommand(commandArgs, recievedMessage);
-  // } else if (primaryCommand == "bitcoin") {
-  //   bitcoinCommand(commandArgs, recievedMessage);
-  // } else if (primaryCommand == "stocks") {
-  //   stocksPriceCommand(recievedMessage);
-  // } else if (primaryCommand == "stock") {
-  //   stockPriceCommand(commandArgs, recievedMessage);
-  // } else if (primaryCommand == "commands") {
-  //   commandList(commandArgs, recievedMessage);
-  // } else {
-  //   recievedMessage.channel.send(
-  //     "Unknow command. Try `!commands` for a list of commands"
-  //   );
-  // }
 }
 
 function multiplyCommand(args, recievedMessage) {
