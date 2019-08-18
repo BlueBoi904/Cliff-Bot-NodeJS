@@ -103,6 +103,9 @@ function processCommand(recievedMessage) {
     case "panda":
       pandaCommand(recievedMessage);
       break;
+    case "chat":
+      chatCommand(commandArgs, recievedMessage);
+      break;
     default:
       recievedMessage.channel.send(
         "Unknow command. Try `!commands` for a list of commands"
@@ -258,7 +261,8 @@ function commandList(recievedMessage) {
     "!dogs",
     "!animalfact",
     "!panda",
-    "!meme"
+    "!meme",
+    "chat"
   ];
   for (let i = 0; i < commands.length; i++) {
     commandList += `\n${commands[i]}`;
@@ -386,7 +390,31 @@ function pandaCommand(recievedMessage) {
       recievedMessage.channel.send("Oops, looks like something went wrong");
     });
 }
-
+function chatCommand(args, recievedMessage) {
+  if (args.length > 0) {
+    let userMessage = "";
+    for (let i = 0; i < args.length; i++) {
+      userMessage += args[i];
+    }
+    axios
+      .get("https://some-random-api.ml/chatbot", {
+        params: {
+          message: userMessage
+        }
+      })
+      .then(res => {
+        recievedMessage.channel.send(res.data.response);
+      })
+      .catch(err => {
+        console.log(err);
+        recievedMessage.channel.send("Oops, looks like something went wrong.");
+      });
+  } else {
+    recievedMessage.channel.send(
+      "Make sure you send a message to chat after the command.\n\nExample: `!chat How are you?`"
+    );
+  }
+}
 client.login(loginInfo);
 // Bot is now online
 
