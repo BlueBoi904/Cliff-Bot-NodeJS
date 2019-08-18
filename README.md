@@ -30,6 +30,7 @@ Custom Discord bot that can interact with the server by displaying current stock
 - !meme
 - !animalfact
 - !panda
+- !chat
 
 # What I've Learned
 

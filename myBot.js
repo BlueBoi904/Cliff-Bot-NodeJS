@@ -150,6 +150,10 @@ function helpCommand(args, recievedMessage) {
     recievedMessage.channel.send(
       ` It looks like you need help with the !dogs command.\n\nPlease type the '!dogs' command followed by the breed of dog you like most!\n\nExample: '!dogs boxer'`
     );
+  } else if (args[0] === "chat") {
+    recievedMessage.channel.send(
+      " It looks like you need help with the !dogs command.\n\nExample: `!chat How are you?`"
+    );
   }
 }
 //Command ideas
