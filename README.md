@@ -1,6 +1,6 @@
 # Cliff-Bot-Discord
 
-Custom Discord bot that can interact with the server by displaying current stock or crypto data, translating any language, generating random dog images, and many other interesting functionalities.
+Custom Discord bot that can interact with the server by displaying current stock or crypto data, translating any language, generating a random meme or animal pics, and many other interesting functionalities.
 
 # Image
 
@@ -27,6 +27,9 @@ Custom Discord bot that can interact with the server by displaying current stock
 - !ping
 - !translate
 - !dogs
+- !meme
+- !animalfact
+- !panda
 
 # What I've Learned
 
