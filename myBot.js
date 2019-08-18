@@ -274,7 +274,9 @@ function commandList(recievedMessage) {
     "!translate",
     "!languages",
     "!dogs",
-    "!animalfact"
+    "!animalfact",
+    "!panda",
+    "!meme"
   ];
   for (let i = 0; i < commands.length; i++) {
     commandList += `\n${commands[i]}`;
