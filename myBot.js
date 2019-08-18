@@ -91,6 +91,9 @@ function processCommand(recievedMessage) {
     case "dogs":
       dogsCommand(commandArgs, recievedMessage);
       break;
+    case "meme":
+      memeCommand(recievedMessage);
+      break;
     default:
       recievedMessage.channel.send(
         "Unknow command. Try `!commands` for a list of commands"
@@ -340,6 +343,20 @@ function dogsCommand(args, recievedMessage) {
         );
       });
   }
+}
+
+function memeCommand(recievedMessage) {
+  fetch("https://some-random-api.ml/meme")
+    .then(res => {
+      return res.json();
+    })
+    .then(data => {
+      const webAttachment = new Discord.Attachment(data.image);
+      recievedMessage.channel.send(webAttachment);
+    })
+    .catch(err => {
+      recievedMessage.channel.send("Oops, something went wrong...");
+    });
 }
 
 client.login(loginInfo);
