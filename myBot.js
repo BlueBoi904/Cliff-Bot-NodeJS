@@ -4,6 +4,7 @@ const { API } = require("./ignoreFolder/coinbaseApi");
 const { StockAPI } = require("./ignoreFolder/marketDataApi");
 const stockdata = require("stock-data.js");
 const { fortunes } = require("./util/data");
+const { animalFacts } = require("./util/animalData");
 const Discord = require("discord.js");
 const client = new Discord.Client();
 const { Translate } = require("@google-cloud/translate");
@@ -93,6 +94,9 @@ function processCommand(recievedMessage) {
       break;
     case "meme":
       memeCommand(recievedMessage);
+      break;
+    case "animalfact":
+      animalFactCommand(recievedMessage);
       break;
     default:
       recievedMessage.channel.send(
@@ -353,6 +357,22 @@ function memeCommand(recievedMessage) {
     .then(data => {
       const webAttachment = new Discord.Attachment(data.image);
       recievedMessage.channel.send(webAttachment);
+    })
+    .catch(err => {
+      recievedMessage.channel.send("Oops, something went wrong...");
+    });
+}
+
+function animalFactCommand(recievedMessage) {
+  const randomFactEndpoint =
+    animalFacts[Math.floor(Math.random() * animalFacts.length)];
+
+  fetch(randomFactEndpoint)
+    .then(res => {
+      return res.json();
+    })
+    .then(data => {
+      recievedMessage.channel.send(data.fact);
     })
     .catch(err => {
       recievedMessage.channel.send("Oops, something went wrong...");
