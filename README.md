@@ -21,9 +21,9 @@ Here's a list of commands users can use with CliffBot.
 
 `!help` provides a list of commands available to the user.
 
-`!multiply <1 2 3>` returns product of numbers entered by space.
-
 `!commands` returns a list of commands that can help the user decide what to do next.
+
+`!chat <text>` Chat bot that will interact with the user
 
 `!bitcoin` returns the current market price of Bitcoin.
 
@@ -31,23 +31,21 @@ Here's a list of commands users can use with CliffBot.
 
 `!stocks` returns the current market data from some the hottest stocks on the market.
 
-`!dogs <breed>` returns cute pictures of dogs to cheer you up,.
+`!dogs <breed>` returns cute pictures of dogs to cheer you up.
 
 `!translate <language symbol> <text>` Translates to and from anylanguage. Our API will auto detect text language.
 
-- !multiply
-- !commands
--
-- !fortune
-- !stock
-- !stocks
-- !ping
-- !translate
-- !dogs
-- !meme
-- !animalfact
-- !panda
-- !chat
+`!animalfact` Give the user a random animal fact.
+
+`!fortune` Tell the user their fortune.
+
+`!meme` Send a random funny meme to the discord channel.
+
+`!panda` Send a random panda pic to the channel.
+
+`!multiply <1 2 3>` returns product of numbers entered by space.
+
+`!ping` Ping the bot! See what happens...
 
 # What I've Learned
 
