@@ -17,7 +17,7 @@ Custom Discord bot that can interact with the server by displaying current stock
 
 # Commands
 
-Here's a list of commands users can use with CliffBot.
+Here's a list of commands users can use with CliffBot:
 
 `!help` provides a list of commands available to the user.
 
@@ -51,4 +51,4 @@ Here's a list of commands users can use with CliffBot.
 
 - Handling Promises with Asynchronous, Non-Blocking JavaScript
 - Using NodeJS to interact with user through Discord API
-- How to properly work with enviroment variables in NodeJS
+- Hitting various RESTful API endpoints
