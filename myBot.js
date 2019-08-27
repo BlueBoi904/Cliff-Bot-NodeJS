@@ -261,7 +261,8 @@ function commandList(recievedMessage) {
     "!animalfact",
     "!panda",
     "!meme",
-    "chat"
+    "chat",
+    "server"
   ];
   for (let i = 0; i < commands.length; i++) {
     commandList += `\n${commands[i]}`;
@@ -417,7 +418,7 @@ function chatCommand(args, recievedMessage) {
 
 function serverCommand(recievedMessage) {
   recievedMessage.channel.send(
-    `Server name: ${recievedMessage.guild.name}\nTotal members: ${recievedMessage.guild.memberCount}`
+    `Server name: ${recievedMessage.guild.name}\n\nTotal members: ${recievedMessage.guild.memberCount}`
   );
 }
 client.login(loginInfo);
