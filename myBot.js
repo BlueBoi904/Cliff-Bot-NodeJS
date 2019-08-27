@@ -106,6 +106,9 @@ function processCommand(recievedMessage) {
     case "chat":
       chatCommand(commandArgs, recievedMessage);
       break;
+    case "server":
+      serverCommand(recievedMessage);
+      break;
     default:
       recievedMessage.channel.send(
         "Unknow command. Try `!commands` for a list of commands"
@@ -410,6 +413,12 @@ function chatCommand(args, recievedMessage) {
       "Make sure you send a message to chat after the command.\n\nExample: `!chat How are you?`"
     );
   }
+}
+
+function serverCommand(recievedMessage) {
+  recievedMessage.channel.send(
+    `Server name: ${recievedMessage.guild.name}\nTotal members: ${recievedMessage.guild.memberCount}`
+  );
 }
 client.login(loginInfo);
 // Bot is now online
