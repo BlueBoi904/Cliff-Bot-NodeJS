@@ -6,6 +6,8 @@ Custom Discord bot that can interact with the server by displaying current stock
 
 <img src='Images/bot_test.png' heigth='500'>
 
+<img src='Images/bot_test2.png' heigth='500'>
+
 # Technologies Used
 
 - NodeJS
@@ -49,7 +51,9 @@ Here's a list of commands users can use with CliffBot:
 
 `!server` Get information about the current server and its members.
 
-`!pokedex <pokemon name>` Everything you need to know about any Pokemon!
+`!lyrics <song name>` Get information and lyrics for any song!
+
+`!pokemon <pokemon name>` Everything you need to know about any Pokemon!
 
 # What I've Learned
 
