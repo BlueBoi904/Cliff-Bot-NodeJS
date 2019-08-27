@@ -109,6 +109,9 @@ function processCommand(recievedMessage) {
     case "server":
       serverCommand(recievedMessage);
       break;
+    case "lyrics":
+      lyricsCommand(commandArgs, recievedMessage);
+      break;
     default:
       recievedMessage.channel.send(
         "Unknow command. Try `!commands` for a list of commands"
@@ -420,6 +423,32 @@ function serverCommand(recievedMessage) {
   recievedMessage.channel.send(
     `Server name: ${recievedMessage.guild.name}\n\nTotal members: ${recievedMessage.guild.memberCount}`
   );
+}
+
+function lyricsCommand(args, recievedMessage) {
+  if (args.length > 0) {
+    let userMessage = "";
+    for (let i = 0; i < args.length; i++) {
+      userMessage += args[i];
+    }
+    userMessage = userMessage.split("").join(" ");
+
+    axios
+      .get("https://some-random-api.ml/lyrics", {
+        params: {
+          title: userMessage
+        }
+      })
+      .then(res => {
+        recievedMessage.channel.send(
+          `Title: ${res.data.title}\nArtist: ${res.data.author}\nLink: ${res.data.links.genius}`
+        );
+      })
+      .catch(err => {
+        console.log(err);
+        recievedMessage.channel.send("Oops, looks like something went wrong.");
+      });
+  }
 }
 client.login(loginInfo);
 // Bot is now online
