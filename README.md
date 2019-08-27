@@ -52,3 +52,4 @@ Here's a list of commands users can use with CliffBot:
 - Handling Promises with Asynchronous, Non-Blocking JavaScript
 - Using NodeJS to interact with user through Discord API
 - Hitting various RESTful API endpoints
+- Developed Document, Query, and Aggregation middleware using mongoose

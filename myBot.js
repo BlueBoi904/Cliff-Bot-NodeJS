@@ -169,9 +169,9 @@ function fortuneCommand(recievedMessage) {
 function bitcoinCommand(args, recievedMessage) {
   //Tell the user the current price of bitcoin
   //Fetch bitcoin price api
-  var Client = require("coinbase").Client;
+  const Client = require("coinbase").Client;
 
-  var client = new Client({
+  const client = new Client({
     apiKey: API.API,
     apiSecret: API.APISECRET,
     version: "YYYY-MM-DD"
@@ -206,13 +206,7 @@ function stocksPriceCommand(recievedMessage) {
     })
     .then(res => {
       recievedMessage.channel.send(
-        `Here are some of the top stocks right now:\n${res.data[0].symbol} - $${
-          res.data[0].price
-        }\n${res.data[1].symbol} - $${res.data[1].price}\n${
-          res.data[2].symbol
-        } - $${res.data[2].price}\n${res.data[3].symbol} - $${
-          res.data[3].price
-        }\n${res.data[4].symbol} - $${res.data[4].price} `
+        `Here are some of the top stocks right now:\n${res.data[0].symbol} - $${res.data[0].price}\n${res.data[1].symbol} - $${res.data[1].price}\n${res.data[2].symbol} - $${res.data[2].price}\n${res.data[3].symbol} - $${res.data[3].price}\n${res.data[4].symbol} - $${res.data[4].price} `
       );
     })
     .catch(err => {
@@ -232,9 +226,7 @@ function stockPriceCommand(args, recievedMessage) {
       })
       .then(res => {
         recievedMessage.channel.send(
-          `Name: ${res.data[0].name}\nTicker: ${
-            res.data[0].symbol
-          }\nCurrent Price: $${res.data[0].price}`
+          `Name: ${res.data[0].name}\nTicker: ${res.data[0].symbol}\nCurrent Price: $${res.data[0].price}`
         );
       })
       .catch(err => {
