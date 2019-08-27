@@ -2,7 +2,7 @@
 
 Custom Discord bot that can interact with the server by displaying current stock or crypto data, translating any language, generating a random meme or animal pics, and many other interesting functionalities.
 
-# Image
+# Example
 
 <img src='Images/bot_test.png' heigth='500'>
 
