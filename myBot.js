@@ -2,6 +2,7 @@
 const { loginInfo } = require("./ignoreFolder/loginInfo");
 const { API } = require("./ignoreFolder/coinbaseApi");
 const { StockAPI } = require("./ignoreFolder/marketDataApi");
+const { capitalizeFirstLetter } = require("./util/capitalize");
 const stockdata = require("stock-data.js");
 const { fortunes } = require("./util/data");
 const { animalFacts } = require("./util/animalData");
@@ -111,6 +112,9 @@ function processCommand(recievedMessage) {
       break;
     case "lyrics":
       lyricsCommand(commandArgs, recievedMessage);
+      break;
+    case "pokemon":
+      pokemonCommand(commandArgs, recievedMessage);
       break;
     default:
       recievedMessage.channel.send(
@@ -265,7 +269,8 @@ function commandList(recievedMessage) {
     "!panda",
     "!meme",
     "chat",
-    "server"
+    "server",
+    "pokemon"
   ];
   for (let i = 0; i < commands.length; i++) {
     commandList += `\n${commands[i]}`;
@@ -448,6 +453,52 @@ function lyricsCommand(args, recievedMessage) {
         console.log(err);
         recievedMessage.channel.send("Oops, looks like something went wrong.");
       });
+  }
+}
+
+function pokemonCommand(args, recievedMessage) {
+  if (args.length > 0) {
+    axios
+      .get("https://some-random-api.ml/pokedex", {
+        params: {
+          pokemon: args[0]
+        }
+      })
+      .then(res => {
+        let abilities = "";
+        if (res.data.abilities.length > 0) {
+          for (let i = 0; i < res.data.abilities.length; i++) {
+            abilities += `${res.data.abilities[i]}, `;
+          }
+        }
+        let evolutions = "";
+        if (res.data.family.evolutionLine.length > 1) {
+          for (let i = 0; i < res.data.family.evolutionLine.length; i++) {
+            evolutions += `${res.data.family.evolutionLine[i]}, `;
+          }
+        }
+
+        let name = capitalizeFirstLetter(res.data.name);
+
+        recievedMessage.channel.send(
+          `Pokemon: ${name}\n\nType: ${res.data.type[0]}\n\nDescription: ${
+            res.data.description
+          }\n\nAbilities: ${abilities}\n\nEvolutions: ${evolutions}`
+        );
+
+        const webAttachment = new Discord.Attachment(res.data.sprites.animated);
+        recievedMessage.channel.send(webAttachment);
+      })
+      .catch(err => {
+        console.log(err);
+        recievedMessage.channel.send(
+          "Oops, looks like something went wrong...\n\nMake sure you send the name of a Pokemon to search the pokedex.\n\nExample: `!pokemon pikachu`"
+        );
+      });
+  } else {
+    recievedMessage.channel.send(
+      "Make sure you send the name of a Pokemon to search the pokedex.\n\nExample: `!pokemon pikachu`"
+    );
   }
 }
 client.login(loginInfo);

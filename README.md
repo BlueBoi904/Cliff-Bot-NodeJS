@@ -47,9 +47,12 @@ Here's a list of commands users can use with CliffBot:
 
 `!ping` Ping the bot! See what happens...
 
+`!server` Get information about the current server and its members.
+
+`!pokedex <pokemon name>` Everything you need to know about any Pokemon!
+
 # What I've Learned
 
 - Handling Promises with Asynchronous, Non-Blocking JavaScript
 - Using NodeJS to interact with user through Discord API
 - Hitting various RESTful API endpoints
-- Developed Document, Query, and Aggregation middleware using mongoose
