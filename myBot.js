@@ -211,7 +211,7 @@ function bitcoinCommand(args, recievedMessage) {
 function stocksPriceCommand(recievedMessage) {
   stockdata
     .realtime({
-      symbols: ["AAPL", "MSFT", "TSLA", "AMZN", "GOOGL"],
+      symbols: ["AMD", "MSFT", "F", "AMZN", "GOOGL"],
       API_TOKEN: StockAPI
     })
     .then(res => {
