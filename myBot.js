@@ -219,7 +219,7 @@ function stocksPriceCommand(recievedMessage) {
         `Here are some of the top stocks right now:\n${res.data[0].symbol} - $${res.data[0].price}\n${res.data[1].symbol} - $${res.data[1].price}\n${res.data[2].symbol} - $${res.data[2].price}\n${res.data[3].symbol} - $${res.data[3].price}\n${res.data[4].symbol} - $${res.data[4].price} `
       );
     })
-    .catch(err => {
+    .catch(() => {
       recievedMessage.channel.send(
         "There was an error processing your data. Please check the stock symbol was corrent and try again."
       );
@@ -239,7 +239,7 @@ function stockPriceCommand(args, recievedMessage) {
           `Name: ${res.data[0].name}\nTicker: ${res.data[0].symbol}\nCurrent Price: $${res.data[0].price}`
         );
       })
-      .catch(err => {
+      .catch(() => {
         recievedMessage.channel.send(
           "There was an error processing your data.\n\nPlease check you entered the stock symbol correctly and try again."
         );
@@ -326,7 +326,7 @@ function dogsCommand(args, recievedMessage) {
         const webAttachment = new Discord.Attachment(data.message);
         recievedMessage.channel.send(webAttachment);
       })
-      .catch(err => {
+      .catch(() => {
         recievedMessage.channel.send("Oops, something went wrong...");
       });
   } else if (args[0]) {
@@ -341,7 +341,7 @@ function dogsCommand(args, recievedMessage) {
         const webAttachment = new Discord.Attachment(data.message);
         recievedMessage.channel.send(webAttachment);
       })
-      .catch(err => {
+      .catch(() => {
         recievedMessage.channel.send(
           "Oops, something went wrong... Please make sure you entered the breed name correctly\n\nExample '!dogs boxer'\n\n Sub breeds are not supported... i.e golden retriever"
         );
@@ -358,7 +358,7 @@ function memeCommand(recievedMessage) {
       const webAttachment = new Discord.Attachment(data.image);
       recievedMessage.channel.send(webAttachment);
     })
-    .catch(err => {
+    .catch(() => {
       recievedMessage.channel.send("Oops, something went wrong...");
     });
 }
@@ -374,7 +374,7 @@ function animalFactCommand(recievedMessage) {
     .then(data => {
       recievedMessage.channel.send(data.fact);
     })
-    .catch(err => {
+    .catch(() => {
       recievedMessage.channel.send("Oops, something went wrong...");
     });
 }
@@ -394,7 +394,7 @@ function pandaCommand(recievedMessage) {
       const webAttachment = new Discord.Attachment(data.link);
       recievedMessage.channel.send(webAttachment);
     })
-    .catch(err => {
+    .catch(() => {
       recievedMessage.channel.send("Oops, looks like something went wrong");
     });
 }
@@ -413,8 +413,7 @@ function chatCommand(args, recievedMessage) {
       .then(res => {
         recievedMessage.channel.send(res.data.response);
       })
-      .catch(err => {
-        console.log(err);
+      .catch(() => {
         recievedMessage.channel.send("Oops, looks like something went wrong.");
       });
   } else {
@@ -449,8 +448,7 @@ function lyricsCommand(args, recievedMessage) {
           `Title: ${res.data.title}\nArtist: ${res.data.author}\nLink: ${res.data.links.genius}`
         );
       })
-      .catch(err => {
-        console.log(err);
+      .catch(() => {
         recievedMessage.channel.send("Oops, looks like something went wrong.");
       });
   }
@@ -489,8 +487,7 @@ function pokemonCommand(args, recievedMessage) {
         const webAttachment = new Discord.Attachment(res.data.sprites.animated);
         recievedMessage.channel.send(webAttachment);
       })
-      .catch(err => {
-        console.log(err);
+      .catch(() => {
         recievedMessage.channel.send(
           "Oops, looks like something went wrong...\n\nMake sure you send the name of a Pokemon to search the pokedex.\n\nExample: `!pokemon pikachu`"
         );
